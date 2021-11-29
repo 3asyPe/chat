@@ -1,8 +1,12 @@
 <template>
 <div class="messages">
-  <message :msg="'test message 1'"></message>
-  <message :msg="'test message 2'"></message>
-  <message :msg="'test message 3'"></message>
+    <message 
+        :key="index" 
+        v-for="(msg, index) in messages" 
+        :msg="msg.message"
+        :owned="msg.owner == 'me'"
+        >
+    </message>
 </div>
 </template>
 
@@ -11,9 +15,12 @@ import Message from "./Message.vue"
 
 export default {
     name: "messages",
+    props: {
+        messages: Array,
+    },
     components: {
         Message,
-    }
+    },
 }
 </script>
 
